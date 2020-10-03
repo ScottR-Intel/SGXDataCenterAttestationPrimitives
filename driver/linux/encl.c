@@ -163,8 +163,8 @@ static void sgx_mmu_notifier_release(struct mmu_notifier *mn,
 	spin_unlock(&encl_mm->encl->mm_lock);
 
 	if (tmp == encl_mm) {
-		synchronize_srcu(&encl_mm->encl->srcu);
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(5,4,0))
+		synchronize_srcu(&encl_mm->encl->srcu);
 		mmu_notifier_put(mn);
 #else
             /*
